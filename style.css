@@ -19,22 +19,4 @@ div{
   top: 0;
   bottom: 0;
 
-  section{
-    widht: 800px;
-    height: 300px;
-    background-color: lightgrey;
-    margin: 0rem auto;
-    top: 800px;
-    bottom:350px;
-  }
-    
-  div{
-  width: 20px;
-  height: 20px;
-  background-color: green;
-  position: relative;
-  top: 20;
-  bottom: 20;
-  
-  }
 }
