@@ -1,6 +1,18 @@
-body {
-  
-  background-color: grey;
+<body>
+    <section class="wrapper">
+        <h1>Arrière-plan Animé</h1>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+    </section>
+</body>
 h1 {
   text-align: center;
 }
