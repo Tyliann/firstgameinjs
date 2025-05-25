@@ -1,8 +1,10 @@
-h1 {
+body {
+  
   background-color: grey;
+h1 {
   text-align: center;
 }
-
+}
 section{
   width: 800px ;
   height: 300px ;
