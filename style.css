@@ -6,10 +6,6 @@ section{
   height: 300px ;
   background-color: black;
   margin: 0rem auto;
-    * {
-   margin: 0;
-   padding: 0;
-}
 }
 
 div{
