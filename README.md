@@ -1,3 +1,3 @@
 # Projet Course en Cours
 
-link : https://tyliann.github.io/projetcourseencours/
+link : https://tyliann.github.io/firstgameinjs/
