@@ -1,16 +1,243 @@
+<!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tyliann Prevot</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>On a pas Bullé</title>
+  <!-- Thème bulle intégré directement -->
+  <style>
+  :root{
+    --bg-1: #e9fbff;
+    --bg-2: #f7feff;
+    --accent: #7fd3ff;
+    --accent-2: #a6e6ff;
+    --text: #072033;
+    --muted: #4b6b86;
+    --glass: rgba(255,255,255,0.72);
+    --shadow: 0 12px 30px rgba(7,32,51,0.12);
+    --radius: 14px;
+  }
+
+  html,body{height:100%;}
+  body{
+    margin:0;
+    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    color:var(--text);
+    background: radial-gradient(800px 360px at 10% 10%, var(--bg-2), transparent 18%),
+                radial-gradient(600px 300px at 90% 90%, var(--bg-1), transparent 12%),
+                linear-gradient(180deg,#fbffff 0%, #eafcff 100%);
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    overflow-x:hidden;
+    padding-bottom:48px;
+  }
+
+  .container{
+    max-width:1100px;
+    margin:36px auto;
+    padding:26px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.78), rgba(255,255,255,0.66));
+    border-radius: calc(var(--radius) + 6px);
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(6px) saturate(120%);
+    position:relative;
+    z-index:1;
+  }
+
+  /* Brand / header */
+  .brand{display:flex;gap:18px;align-items:center}
+  .logo-bubble{
+    width:84px;height:84px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:22px;
+    background: radial-gradient(circle at 30% 30%, var(--accent), var(--accent-2));
+    box-shadow: 0 8px 20px rgba(127,211,255,0.18), inset 0 -6px 18px rgba(255,255,255,0.06);
+  }
+  header h1{margin:0;font-size:22px}
+  .lead{color:var(--muted);margin-top:6px}
+  .team-meta{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
+  .badge{background:rgba(11,35,64,0.04);padding:6px 10px;border-radius:10px;font-size:13px}
+
+  /* Grid of members */
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:14px}
+  .bubble-card{display:flex;gap:14px;align-items:flex-start;padding:14px;border-radius:12px;background:var(--glass);box-shadow:0 8px 22px rgba(7,32,51,0.06);}
+  .avatar{width:110px;height:110px;border-radius:50%;object-fit:cover;flex:0 0 110px;box-shadow:0 8px 18px rgba(7,32,51,0.06)}
+  .info{flex:1}
+  .name{margin:0;font-weight:700;font-size:17px}
+  .role{margin:6px 0;color:var(--muted);font-size:14px}
+  .contact{margin:6px 0;font-size:14px}
+  .text-small{font-size:13px;color:var(--muted)}
+  .bio{margin-top:8px;color:var(--muted)}
+  .links{margin-top:10px;display:flex;gap:8px}
+  .link{padding:8px 12px;border-radius:10px;background:linear-gradient(180deg,#ffffff,#f0fbff);text-decoration:none;color:var(--text);font-weight:600;border:1px solid rgba(7,32,51,0.04);}
+
+  footer{margin-top:26px;color:var(--muted)}
+
+  /* Decorative bubbles */
+  .bubble{position:absolute;border-radius:50%;filter:blur(6px);opacity:.9;z-index:0;pointer-events:none;transform:translate3d(0,0,0)}
+  .bubble.small{width:56px;height:56px;background:radial-gradient(circle at 30% 30%, #c8f0ff,#9be2ff)}
+  .bubble.med{width:120px;height:120px;background:radial-gradient(circle at 30% 30%, #dff8ff,#bfeeff)}
+  .bubble.large{width:220px;height:220px;background:radial-gradient(circle at 30% 30%, rgba(127,211,255,0.18), rgba(166,230,255,0.12))}
+
+  @keyframes floatY{0%{transform:translateY(0)}50%{transform:translateY(-18px)}100%{transform:translateY(0)}}
+  @keyframes floatX{0%{transform:translateX(0)}50%{transform:translateX(12px)}100%{transform:translateX(0)}}
+  .float-slow{animation:floatY 9s ease-in-out infinite}
+  .float-med{animation:floatY 6.5s ease-in-out infinite}
+  .float-side{animation:floatX 10s ease-in-out infinite}
+
+  /* Responsive */
+  @media (max-width:900px){.grid{grid-template-columns:repeat(1,1fr)}.logo-bubble{width:64px;height:64px;font-size:18px}.avatar{width:88px;height:88px;flex:0 0 88px}}
+  </style>
 </head>
 <body>
-<h1>Mon premier jeux</h1> 
-<section id="gameplay">
-  <div id="game"></div>
-  <script src="./script.js"></script>
-</section>
+  <!-- bulles décoratives -->
+  <div class="bubble large float-slow" style="left:-80px; top:40px;"></div>
+  <div class="bubble med float-med" style="right:-60px; top:120px; opacity:0.9;"></div>
+  <div class="bubble small float-side" style="left:40%; bottom:-40px; opacity:0.8;"></div>
+
+  <header>
+    <div class="container">
+      <div class="brand">
+        <div class="logo-bubble">OB</div>
+        <div>
+          <h1>On a pas Bullé</h1>
+          <div class="lead">Équipe Course en Cours sur le thème de la bulle.</div>
+          <div class="team-meta">
+            <div class="badge">Localisation: Montaigu Vendée, France</div>
+            <div class="badge">Taille: 4 personnes</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <h2 style="margin-top:0">Membres de l'équipe</h2>
+
+
+      <div class="grid">
+
+        <article class="bubble-card">
+          <img class="avatar" src="" alt="Matéo CAILLET">
+          <div class="info">
+            <p class="name">Matéo CAILLET</p>
+            <p class="role">Concepteur 3D / Chef d'équipe</p>
+<!-- à changer les liens ne sont pas correct (pas de boite mail par défaut et pas de liens pour envoyé un mail grâce au liens) -->
+            <p class="contact">✉️ <a href="https://mail.google.com/mail/" target="_blank" rel="noopener noreferrer">cailletmateo9@gmail.com</a></p>
+            <p class="contact text-small">· ☎️ +33 6 40 24 78 96</p>
+            <p class="bio">Matéo réalise l'innovation de notre voiture et teste ses performances.</p>
+            <div class="links">
+            </div>
+          </div>
+        </article>
+
+        <article class="bubble-card">
+          <img class="avatar" src="" alt="Lorenzo MANGONE">
+          <div class="info">
+            <p class="name">Lorenzo MANGONE</p>
+            <p class="role">Concepteur 3D</p>
+<!-- à changer les liens ne sont pas correct (pas de boite mail par défaut et pas de liens pour envoyé un mail grâce au liens) -->
+            <p class="contact">✉️ <a href="https://mail.google.com/mail/" target="_blank" rel="noopener noreferrer">lorenzo.mang22@gmail.com</a></p>
+            <p class="contact text-small">· ☎️ +33 6 50 99 54 49</p>
+            <p class="bio">Lorenzo s'intéresse à la conception 3D des roues de notre voiture.</p>
+            <div class="links">
+            </div>
+          </div>
+        </article>
+
+        <article class="bubble-card">
+          <img class="avatar" src="" alt="Tyliann PREVOT">
+          <div class="info">
+            <p class="name">Tyliann PREVOT</p>
+            <p class="role">Développeur / Monteur-câbleur</p>
+<!-- à changer les liens ne sont pas correct (pas de boite mail par défaut et pas de liens pour envoyé un mail grâce au liens) -->
+            <p class="contact">✉️ <a href="https://www.icloud.com/mail" target="_blank" rel="noopener noreferrer">ptyliann@icloud.com</a></p>
+            <p class="contact text-small">· ☎️ +33 6 66 59 31 03</p>
+            <p class="bio">Tyliann s'occupe de la programmation de la page web et de la voiture, il câble la carte Arduino du prototype.</p>
+            <div class="links">
+            <a class="link" href="https://github.com/Tyliann" target="_blank" rel="noopener noreferrer">GitHub</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="bubble-card">
+          <img class="avatar" src="" alt="Alexis PRIET">
+          <div class="info">
+            <p class="name">Alexis PRIET</p>
+            <p class="role">Concepteur 3D</p>
+<!-- à changer les liens ne sont pas correct (pas de boite mail par défaut et pas de liens pour envoyé un mail grâce au liens) -->
+            <p class="contact">✉️ <a href="https://mail.google.com/mail/" target="_blank" rel="noopener noreferrer">alexis.priet10@gmail.com</a></p>
+            <p class="contact text-small">· ☎️ +33 7 88 18 96 43</p>
+            <p class="bio">Alexis réalise la carrosserie de notre voiture.</p>
+            <div class="links">
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+    </div>
+  </main>
+
+  <main>
+    <div class="container">
+      <h2 style="margin-top:0">À propos de notre équipe</h2>
+      <p>Dans le cadre de notre année de première STI2D, nous formons une équipe de quatre lycéens de Montaigu en Vendée, pour le projet de notre lycée dans le concours Course en Cours. Notre équipe <strong>"On a pas Bullé"</strong> travaille sur la conception et la réalisation d’une voiture inspirée par le thème de la bulle. Chaque membre apporte ses compétences, allant de la conception 3D à la programmation et au câblage électronique. Nous préparons également un stand et un oral pour présenter nos idées en lien avec notre thème. Ce projet nous permet de développer nos compétences techniques et notre esprit d’équipe.</p>
+     <article class="container">
+       <h2 class="underline">Notre stand</h2>
+       <style>
+.underline {
+ text-decoration: underline;
+}
+</style>
+       <p>Notre stand dans lequel repose un baton à bulle sera notre élement principal. Les murs de notre stand serons en papier peint/ peint/ projeté de sorte a faire apparaître des bulles de savon.</p>
+       <h3>Quelques photos</h3>
+       </article>
+     <article class="container">
+       <h2 class="underline">Notre voiture</h2>
+              <style>
+.underline {
+ text-decoration: underline;
+}
+</style>
+       <p></p>
+        <h3>Quelques photos</h3>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div>© <a class="link" href="https://github.com/Tyliann" target="_blank" rel="noopener noreferrer">Tyliann PREVOT</a><strong>-On a pas bullé</strong></div>
+    </div>
+  </footer>
+</footer>
+
+<!-- Script optionnel : positionne aléatoirement les bulles et varie l'animation -->
+<script>
+(function randomizeBubbles(){
+  try{
+    const bubbles = document.querySelectorAll('.bubble');
+    bubbles.forEach((b,i)=>{
+      // position random
+      if(i % 2 === 0){
+        b.style.left = Math.round(Math.random()*80) + '%';
+        b.style.top = (10 + Math.round(Math.random()*60)) + 'px';
+        b.style.right = '';
+      } else {
+        b.style.right = Math.round(Math.random()*60) + 'px';
+        b.style.top = (40 + Math.round(Math.random()*120)) + 'px';
+        b.style.left = '';
+      }
+      b.style.opacity = (0.55 + Math.random()*0.45).toFixed(2);
+      // random animation class
+      const r = Math.random();
+      if(r > 0.75) b.classList.add('float-side');
+      else if(r > 0.4) b.classList.add('float-med');
+      else b.classList.add('float-slow');
+    });
+  }catch(e){console.warn('Bubbles script error', e)}
+})();
+</script>
+
 </body>
 </html>
