@@ -3,16 +3,19 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>On n'a pas Bullé</title>
+  <title>On a pas Bullé</title>
   <!-- Thème bulle intégré directement -->
   <style>
+
+  /* Variables de couleurs et styles */
   :root{
     --bg-1: #e9fbff;
     --bg-2: #f7feff;
     --accent: #7fd3ff;
     --accent-2: #a6e6ff;
-    --text: #072033;
+    --text: #288bd6;
     --muted: #4b6b86;
+    --muted-2: #000000;
     --glass: rgba(255,255,255,0.72);
     --shadow: 0 12px 30px rgba(7,32,51,0.12);
     --radius: 14px;
@@ -44,7 +47,7 @@
     z-index:1;
   }
 
-  /* Brand / header */
+  /* header */
   .brand{display:flex;gap:18px;align-items:center}
   .logo-bubble{
     width:84px;height:84px;border-radius:50%;
@@ -55,24 +58,25 @@
   header h1{margin:0;font-size:22px}
   .lead{color:var(--muted);margin-top:6px}
   .team-meta{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
-  .badge{background:rgba(11,35,64,0.04);padding:6px 10px;border-radius:10px;font-size:13px}
+  .badge{background:rgba(11,35,64,0.04);padding:6px 10px;border-radius:10px;font-size:13px;color:var(--muted)}
 
-  /* Grid of members */
+  /* Grid des membres */
+  .title{margin-top: auto; color:var(--text)}
   .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:14px}
   .bubble-card{display:flex;gap:14px;align-items:flex-start;padding:14px;border-radius:12px;background:var(--glass);box-shadow:0 8px 22px rgba(7,32,51,0.06);}
   .avatar{width:110px;height:110px;border-radius:50%;object-fit:cover;flex:0 0 110px;box-shadow:0 8px 18px rgba(7,32,51,0.06)}
   .info{flex:1}
-  .name{margin:0;font-weight:700;font-size:17px}
-  .role{margin:6px 0;color:var(--muted);font-size:14px}
+  .name{margin:0;font-weight:700;font-size:17px; color:var(--muted-2)}
+  .role{margin:6px 0;color:var(--muted-2);font-size:14px}
   .contact{margin:6px 0;font-size:14px}
   .text-small{font-size:13px;color:var(--muted)}
   .bio{margin-top:8px;color:var(--muted)}
   .links{margin-top:10px;display:flex;gap:8px}
-  .link{padding:8px 12px;border-radius:10px;background:linear-gradient(180deg,#ffffff,#f0fbff);text-decoration:none;color:var(--text);font-weight:600;border:1px solid rgba(7,32,51,0.04);}
+  .link{padding:8px 12px;border-radius:10px;background:linear-gradient(180deg,#ffffff,#f0fbff);text-decoration:none;color:var(--muted);font-weight:600;border:1px solid rgba(7,32,51,0.04);}
 
   footer{margin-top:26px;color:var(--muted)}
 
-  /* Decorative bubbles */
+  /* Bulle decorative */
   .bubble{position:absolute;border-radius:50%;filter:blur(6px);opacity:.9;z-index:0;pointer-events:none;transform:translate3d(0,0,0)}
   .bubble.small{width:56px;height:56px;background:radial-gradient(circle at 30% 30%, #c8f0ff,#9be2ff)}
   .bubble.med{width:120px;height:120px;background:radial-gradient(circle at 30% 30%, #dff8ff,#bfeeff)}
@@ -89,7 +93,8 @@
   </style>
 </head>
 <body>
-  <!-- bulles décoratives -->
+</style>
+  <!-- Bulles décoratives -->
   <div class="bubble large float-slow" style="left:-80px; top:40px;"></div>
   <div class="bubble med float-med" style="right:-60px; top:120px; opacity:0.9;"></div>
   <div class="bubble small float-side" style="left:40%; bottom:-40px; opacity:0.8;"></div>
@@ -101,7 +106,8 @@
             <img src="Logo.jpg" alt="Logo Course en Cours" style="width:100px; height:100px;">
         </div>
         <div>
-          <h1>On n'a pas Bullé</h1>
+          
+          <h1 class="title">On a pas Bullé</h1>
           <div class="lead">Équipe Course en Cours sur le thème de la bulle.</div>
           <div class="team-meta">
             <div class="badge">Localisation: Montaigu Vendée, France</div>
@@ -114,7 +120,7 @@
 
   <main>
     <div class="container">
-      <h2 style="margin-top:0">Membres de l'équipe</h2>
+      <h2 class="name">Membres de l'équipe</h2>
 
 
       <div class="grid">
@@ -124,7 +130,6 @@
           <div class="info">
             <p class="name">Matéo CAILLET</p>
             <p class="role">Concepteur 3D / Chef d'équipe</p>
-<!-- à changer les liens ne sont pas correct (pas de boite mail par défaut et pas de liens pour envoyé un mail grâce au liens) -->
             <p class="contact">✉️ <a href="https://mail.google.com/mail/" target="_blank" rel="noopener noreferrer">cailletmateo9@gmail.com</a></p>
             <p class="bio">Matéo réalise l'innovation de notre voiture et teste ses performances.</p>
             <div class="links">
@@ -137,7 +142,6 @@
           <div class="info">
             <p class="name">Lorenzo MANGONE</p>
             <p class="role">Concepteur 3D</p>
-<!-- à changer les liens ne sont pas correct (pas de boite mail par défaut et pas de liens pour envoyé un mail grâce au liens) -->
             <p class="contact">✉️ <a href="https://mail.google.com/mail/" target="_blank" rel="noopener noreferrer">lorenzo.mang22@gmail.com</a></p>
             <p class="bio">Lorenzo s'intéresse à la conception 3D des roues de notre voiture.</p>
             <div class="links">
@@ -150,7 +154,6 @@
           <div class="info">
             <p class="name">Tyliann PREVOT</p>
             <p class="role">Développeur / Monteur-câbleur</p>
-<!-- à changer les liens ne sont pas correct (pas de boite mail par défaut et pas de liens pour envoyé un mail grâce au liens) -->
             <p class="contact">✉️ <a href="https://www.icloud.com/mail" target="_blank" rel="noopener noreferrer">ptyliann@icloud.com</a></p>
             <p class="bio">Tyliann s'occupe de la programmation de la page web et de la voiture, il câble la carte Arduino du prototype.</p>
             <div class="links">
@@ -164,7 +167,6 @@
           <div class="info">
             <p class="name">Alexis PRIET</p>
             <p class="role">Concepteur 3D</p>
-<!-- à changer les liens ne sont pas correct (pas de boite mail par défaut et pas de liens pour envoyé un mail grâce au liens) -->
             <p class="contact">✉️ <a href="https://mail.google.com/mail/" target="_blank" rel="noopener noreferrer">alexis.priet10@gmail.com</a></p>
             <p class="bio">Alexis réalise la carrosserie de notre voiture.</p>
             <div class="links">
@@ -179,27 +181,38 @@
 
   <main>
     <div class="container">
-      <h2 style="margin-top:0">À propos de notre équipe</h2>
-      <p>Dans le cadre de notre année de première STI2D, nous formons une équipe de quatre lycéens de Montaigu en Vendée, pour le projet de notre lycée dans le concours Course en Cours. Notre équipe <strong>"On n'a pas Bullé"</strong> travaille sur la conception et la réalisation d’une voiture inspirée par le thème de la bulle. Chaque membre apporte ses compétences, allant de la conception 3D à la programmation et au câblage électronique. Nous préparons également un stand et un oral pour présenter nos idées en lien avec notre thème. Ce projet nous permet de développer nos compétences techniques et notre esprit d’équipe.</p>
+      <h2 class="name">À propos de notre équipe</h2>
+      <p class="bio">Dans le cadre de notre année de première STI2D, nous formons une équipe de quatre lycéens de Montaigu en Vendée, pour le projet de notre lycée dans le concours Course en Cours. Notre équipe <strong>"On a pas Bullé"</strong> travaille sur la conception et la réalisation d’une voiture inspirée par le thème de la bulle. Chaque membre apporte ses compétences, allant de la conception 3D à la programmation et au câblage électronique. Nous préparons également un stand et un oral pour présenter nos idées en lien avec notre thème. Ce projet nous permet de développer nos compétences techniques et notre esprit d’équipe.</p>
      <article class="container">
-       <h2 class="underline">Notre stand</h2>
-       <style>
-.underline {
- text-decoration: underline;
-}
-</style>
-       <p>Notre stand dans lequel repose un baton à bulle sera notre élement principal. Les murs de notre stand serons en papier peint/ peint/ projeté de sorte a faire apparaître des bulles de savon.</p>
-       <h3>Quelques photos</h3>
+       <h2 class="name">Notre stand</h2>
+       <p class="bio">Notre stand dans lequel repose un baton à bulle sera notre élement principal. Les murs de notre stand serons en papier peint/ peint/ projeté de sorte a faire apparaître des bulles de savon.</p>
+       
+       <h3 class="name">Quelques photos</h3>
+       <img src="Stand représentation 3D.JPG" alt="notre représentation 3D du stand" style="border-radius: 5%;">
        </article>
-     <article class="container">
-       <h2 class="underline">Notre voiture</h2>
-              <style>
-.underline {
- text-decoration: underline;
-}
-</style>
-       <p></p>
-        <h3>Quelques photos</h3>
+
+       <h2 class="name">Notre voiture</h2>     
+        <p class="lead">Notre voiture est pensé pour avoir la forme d'un tube a bulle</p>
+
+        <h3 class="name">Quelques photos</h3>
+        <img src="" alt="notre voiture de course">
+
+        <h3 class="name">L'aspect technique de la voiture</h3>
+        <p class="bio">Créé par <strong>Lorenzo</strong></p>
+        <p class="bio">Les roues</p>
+        <img src="Roue-Moteur 2.JPG" width="450" height="300" style="border-radius: 5%;">
+
+        <p class="bio">Créé par <strong>Alexis</strong></p>
+        <p class="bio">La carrosserie</p>
+        <img src="carosserie.png" alt="la carrosserie de notre voiture" height="300" width="450" style="border-radius: 5%;">
+
+        <p class="bio">Usinage de notre carrosserie</p>
+        <img src="carosserie2.jpeg" alt="usinage" height="300" width="450" style="border-radius: 5%;">
+        <img src="carosserie3.jpeg" alt="usinage" height="300" width="450" style="border-radius: 5%;">
+
+        <p class="bio">Le banc test</p>
+        <p class="bio">Créé par <strong>Matéo</strong></p>
+        <img src="" alt="le banc test de notre voiture">
     </div>
   </main>
 
@@ -210,13 +223,13 @@
   </footer>
 </footer>
 
-<!-- Script optionnel : positionne aléatoirement les bulles et varie l'animation -->
+<!-- Script supplémentaire, positionne aléatoirement les bulles et varie l'animation -->
 <script>
 (function randomizeBubbles(){
   try{
     const bubbles = document.querySelectorAll('.bubble');
     bubbles.forEach((b,i)=>{
-      // position random
+      // Position random
       if(i % 2 === 0){
         b.style.left = Math.round(Math.random()*80) + '%';
         b.style.top = (10 + Math.round(Math.random()*60)) + 'px';
@@ -227,7 +240,7 @@
         b.style.left = '';
       }
       b.style.opacity = (0.55 + Math.random()*0.45).toFixed(2);
-      // random animation class
+      // Random animation class
       const r = Math.random();
       if(r > 0.75) b.classList.add('float-side');
       else if(r > 0.4) b.classList.add('float-med');
